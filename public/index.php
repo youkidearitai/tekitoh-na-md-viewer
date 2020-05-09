@@ -34,7 +34,7 @@ $routes = [
 
 function parseRouteNumber(string $request, string $router) {
 	$numbers = \sscanf($request, $router);
-	if (count($numbers) != 1) {
+	if (\count($numbers) != 1) {
 		return false;
 	}
 
