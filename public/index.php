@@ -18,19 +18,19 @@ class NotFoundException extends \Exception {
 $routes = [
 	"/" => [
 		"title" => "TOP PAGE",
-		"view" => function ($contents) {
+		"view" => function (string $contents) : string {
 			return "TOP PAGE";
 		},
 	],
 	"/text/%d" => [
 		"title" => "pages",
-		"view" => function($contents) {
+		"view" => function(string $contents) : string {
 			return $contents;
 		},
 	],
 	"/dump" => [
 		"title" => "DUMP method",
-		"view" => function ($contents) {
+		"view" => function (string $contents) : string {
 			\ob_start();
 			\study_extension_dump("Original method study_extension_dump");
 			\study_extension_dump($_SERVER);
