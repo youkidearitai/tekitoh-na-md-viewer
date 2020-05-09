@@ -71,12 +71,10 @@ function h($str) {
 	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
 
-$page = null;
 $contents = null;
 
 foreach ($routes as $key => $val) {
 	if ($key === $_SERVER["REQUEST_URI"]) {
-		$page = $val;
 		$contents = $val["view"]("");
 		break;
 	}
@@ -84,13 +82,12 @@ foreach ($routes as $key => $val) {
 	$number = parseRouteNumber($_SERVER["REQUEST_URI"], $key);
 
 	if ($number !== false) {
-		$page = $val;
 		$contents = $val["view"](readMarkdown($number));
 		break;
 	}
 }
 
-if (!isset($page, $contents)) {
+if (!isset($contents)) {
 	throw new NotFoundException("404 Not Found");
 }
 
