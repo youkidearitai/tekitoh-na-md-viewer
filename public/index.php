@@ -4,6 +4,10 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR 
 
 use Michelf\MarkdownExtra;
 
+define("VIEW_PATH", \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view');
+define("MARKDOWN_PATH", VIEW_PATH . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR);
+define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
+
 class NotFoundException extends \Exception {
 }
 
@@ -38,11 +42,11 @@ function parseRouteNumber(string $request, string $router) {
 		return false;
 	}
 
-	return $numbers[0];
+	return $numbers[0] ?? false;
 }
 
 function readMarkdown(int $num) {
-	$path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . 'shakyou_dump_' . strval($num) . '.md';
+	$path = MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . strval($num) . '.md';
 
 	if (!\file_exists($path)) {
 		return false;
@@ -63,7 +67,7 @@ function footer() {
 + [study_extension_dump testing](/dump)
 MD;
 
-	foreach (\glob(\dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . 'shakyou_dump_*.md') as $file) {
+	foreach (\glob(MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . '*.md') as $file) {
 		$path = \basename($file);
 		$match = \sscanf($path, "shakyou_dump_%d.md");
 		$markdown .= \sprintf("\n+ [%s](/text/%s)", $path, $match[0]);
