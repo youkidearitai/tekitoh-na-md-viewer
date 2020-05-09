@@ -11,15 +11,11 @@ define("TEMPLATE_PATH", VIEW_PATH . 'template' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_PATH", VIEW_PATH . 'markdown' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 
-require_once ROUTING_PATH . 'routes.php';
-require_once LIB_PATH . 'functions.php';
+define("DEBUG", true);
 
-class NotFoundException extends \Exception {
-	public function __construct($message, $code = 0, Exception $previous = null) {
-		header("HTTP/1.0 404 Not Found");
-		parent::__construct($message, $code, $previous);
-	}
-}
+require_once ROUTING_PATH . 'routes.php';
+require_once ROUTING_PATH . 'error.php';
+require_once LIB_PATH . 'functions.php';
 
 $contents = null;
 

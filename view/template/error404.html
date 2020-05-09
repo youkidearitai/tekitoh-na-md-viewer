@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>404 Not Found</title>
+</head>
+<body>
+    <h1>ページが見つかりません！</h1>
+    <p>ここにはページがありません。リンクからたどり直してください。</p>
+<footer>
+    <?php require_once 'footer.html'; ?>
+</footer>
+<section>
+  <?php if (DEBUG) { ?>
+    <pre><?php study_extension_dump($errorException); ?></pre>
+  <?php } ?>
+</section>
+</body>
+</html>
