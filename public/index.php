@@ -9,6 +9,10 @@ define("MARKDOWN_PATH", VIEW_PATH . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY
 define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 
 class NotFoundException extends \Exception {
+	public function __construct($message, $code = 0, Exception $previous = null) {
+		header("HTTP/1.0 404 Not Found");
+		parent::__construct($message, $code, $previous);
+	}
 }
 
 $routes = [
@@ -49,7 +53,7 @@ function readMarkdown(int $num) {
 	$path = MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . strval($num) . '.md';
 
 	if (!\file_exists($path)) {
-		return false;
+		throw new NotFoundException("404 Not Found");
 	}
 
 	$contents = \file_get_contents($path);
