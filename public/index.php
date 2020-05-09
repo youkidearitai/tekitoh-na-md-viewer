@@ -4,10 +4,15 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR 
 
 use Michelf\MarkdownExtra;
 
-define("VIEW_PATH", \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR);
+define("ROOT", \dirname(__DIR__) . DIRECTORY_SEPARATOR);
+
+define("ROUTING_PATH", ROOT . 'routing' . DIRECTORY_SEPARATOR);
+define("VIEW_PATH", ROOT . 'view' . DIRECTORY_SEPARATOR);
 define("TEMPLATE_PATH", VIEW_PATH . 'template' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_PATH", VIEW_PATH . 'markdown' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
+
+require_once ROUTING_PATH . 'routes.php';
 
 class NotFoundException extends \Exception {
 	public function __construct($message, $code = 0, Exception $previous = null) {
@@ -15,32 +20,6 @@ class NotFoundException extends \Exception {
 		parent::__construct($message, $code, $previous);
 	}
 }
-
-$routes = [
-	"/" => [
-		"title" => "TOP PAGE",
-		"view" => function (string $contents) : string {
-			return "TOP PAGE";
-		},
-	],
-	"/text/%d" => [
-		"title" => "pages",
-		"view" => function(string $contents) : string {
-			return $contents;
-		},
-	],
-	"/dump" => [
-		"title" => "DUMP method",
-		"view" => function (string $contents) : string {
-			\ob_start();
-			\study_extension_dump("Original method study_extension_dump");
-			\study_extension_dump($_SERVER);
-			$contents = \ob_get_contents();
-			\ob_end_clean();
-			return "<pre>" . h($contents) . "</pre>";
-		},
-	],
-];
 
 function parseRouteNumber(string $request, string $router) {
 	$numbers = \sscanf($request, $router);
