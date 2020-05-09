@@ -32,6 +32,7 @@ $routes = [
 		"title" => "DUMP method",
 		"view" => function ($contents) {
 			\ob_start();
+			\study_extension_dump("Original method study_extension_dump");
 			\study_extension_dump($_SERVER);
 			$contents = \ob_get_contents();
 			\ob_end_clean();
