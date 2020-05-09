@@ -13,6 +13,7 @@
 <section>
   <?php if (DEBUG) { ?>
     <pre><?php study_extension_dump($errorException); ?></pre>
+    <pre><?php study_extension_print_backtrace(); ?></pre>
   <?php } ?>
 </section>
 </body>
