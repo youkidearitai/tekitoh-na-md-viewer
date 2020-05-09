@@ -1,0 +1,16 @@
+<?php
+
+use Michelf\MarkdownExtra;
+
+$markdown = <<<MD
++ [TOP PAGE](/)
++ [study_extension_dump testing](/dump)
+MD;
+
+foreach (\glob(MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . '*.md') as $file) {
+    $path = \basename($file);
+    $match = \sscanf($path, "shakyou_dump_%d.md");
+    $markdown .= \sprintf("\n+ [%s](/text/%s)", $path, $match[0]);
+}
+
+echo MarkdownExtra::defaultTransform($markdown);

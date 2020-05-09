@@ -4,8 +4,9 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR 
 
 use Michelf\MarkdownExtra;
 
-define("VIEW_PATH", \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view');
-define("MARKDOWN_PATH", VIEW_PATH . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR);
+define("VIEW_PATH", \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR);
+define("TEMPLATE_PATH", VIEW_PATH . 'template' . DIRECTORY_SEPARATOR);
+define("MARKDOWN_PATH", VIEW_PATH . 'markdown' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 
 class NotFoundException extends \Exception {
@@ -66,21 +67,6 @@ function readMarkdown(int $num) {
 	return MarkdownExtra::defaultTransform($contents);
 }
 
-function footer() {
-	$markdown = <<<MD
-+ [TOP PAGE](/)
-+ [study_extension_dump testing](/dump)
-MD;
-
-	foreach (\glob(MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . '*.md') as $file) {
-		$path = \basename($file);
-		$match = \sscanf($path, "shakyou_dump_%d.md");
-		$markdown .= \sprintf("\n+ [%s](/text/%s)", $path, $match[0]);
-	}
-
-	return MarkdownExtra::defaultTransform($markdown);
-}
-
 function h($str) {
 	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
@@ -108,15 +94,4 @@ if (!isset($page, $contents)) {
 	throw new NotFoundException("404 Not Found");
 }
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title><?php echo h($val["title"]); ?></title>
-</head>
-<body>
-<?php echo $contents; ?>
-<footer><?php echo footer(); ?></footer>
-</body>
-</html>
+require TEMPLATE_PATH . 'default.html';
