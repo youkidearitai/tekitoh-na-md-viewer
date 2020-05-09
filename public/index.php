@@ -14,7 +14,7 @@ $routes = [
 			return "TOP PAGE";
 		},
 	],
-	"/text/:number:" => [
+	"/text/%d" => [
 		"title" => "pages",
 		"view" => function($contents) {
 			return $contents;
@@ -23,60 +23,61 @@ $routes = [
 	"/dump" => [
 		"title" => "DUMP method",
 		"view" => function ($contents) {
-			ob_start();
-			study_extension_dump($_SERVER);
-			$contents = ob_get_contents();
-			ob_end_clean();
+			\ob_start();
+			\study_extension_dump($_SERVER);
+			$contents = \ob_get_contents();
+			\ob_end_clean();
 			return "<pre>" . h($contents) . "</pre>";
 		},
 	],
 ];
 
 function parseRouteNumber(string $request, string $router) {
-	$exploded_router = explode(":number:", rtrim($router, '/'));
-
-	if (count($exploded_router) < 2) {
+	$numbers = \sscanf($request, $router);
+	if (count($numbers) != 1) {
 		return false;
 	}
-	$pos = strpos($request, $exploded_router[0]);
 
-	$num = "";
-	$long = array_map(function ($n) { return strval($n); }, range(0, 9));
-
-	if (is_int($pos)) {
-		for ($index = strlen($exploded_router[0]), $len = strlen($request); $index < $len; $index++) {
-			if (in_array($request[$index], $long)) {
-				$num .= $request[$index];
-			} else {
-				return false;
-			}
-		}
-
-		return intval($num);
-	}
-
-	return false;
+	return $numbers[0];
 }
 
 function readMarkdown(int $num) {
-	$path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . 'shakyou_dump_' . strval($num) . '.md';
+	$path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . 'shakyou_dump_' . strval($num) . '.md';
 
-	if (!file_exists($path)) {
+	if (!\file_exists($path)) {
 		return false;
 	}
 
-	$contents = file_get_contents($path);
+	$contents = \file_get_contents($path);
 
-	if (!is_string($contents)) {
+	if (!\is_string($contents)) {
 		throw new NotFoundException("404 Not Found");
 	}
 
 	return MarkdownExtra::defaultTransform($contents);
 }
 
-function h($str) {
-	return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
+function footer() {
+	$markdown = <<<MD
++ [TOP PAGE](/)
++ [study_extension_dump testing](/dump)
+MD;
+
+	foreach (\glob(\dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'markdown' . DIRECTORY_SEPARATOR . 'shakyou_dump_*.md') as $file) {
+		$path = \basename($file);
+		$match = \sscanf($path, "shakyou_dump_%d.md");
+		$markdown .= \sprintf("\n+ [%s](/text/%s)", $path, $match[0]);
+	}
+
+	return MarkdownExtra::defaultTransform($markdown);
 }
+
+function h($str) {
+	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");
+}
+
+$page = null;
+$contents = null;
 
 foreach ($routes as $key => $val) {
 	if ($key === $_SERVER["REQUEST_URI"]) {
@@ -94,6 +95,10 @@ foreach ($routes as $key => $val) {
 	}
 }
 
+if (!isset($page, $contents)) {
+	throw new NotFoundException("404 Not Found");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -103,5 +108,6 @@ foreach ($routes as $key => $val) {
 </head>
 <body>
 <?php echo $contents; ?>
+<footer><?php echo footer(); ?></footer>
 </body>
 </html>
