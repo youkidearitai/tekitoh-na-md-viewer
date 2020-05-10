@@ -16,8 +16,6 @@ define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 define("DEBUG", true);
 
 require_once ROUTING_PATH . 'routes.php';
-require_once ROUTING_PATH . 'error.php';
-require_once LIB_PATH . 'functions.php';
 
 $contents = null;
 

@@ -26,3 +26,4 @@ $routes = [
 	],
 ];
 
+return $routes;

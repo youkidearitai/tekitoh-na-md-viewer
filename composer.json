@@ -1,5 +1,19 @@
 {
+    "name": "youkidearitai/study_extension_text",
+    "description": "Markdown Viewer",
+    "license": "MIT",
     "require": {
+        "php": "7.4",
+        "ext-study_extension": "^0.1",
         "michelf/php-markdown": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shakyou\\": "shakyou"
+        },
+        "files": [
+            "src/lib/functions.php",
+            "app/routing/error.php"
+        ]
     }
 }
