@@ -4,8 +4,10 @@ require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR 
 
 define("ROOT", \dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
-define("LIB_PATH", ROOT . 'lib' . DIRECTORY_SEPARATOR);
-define("ROUTING_PATH", ROOT . 'routing' . DIRECTORY_SEPARATOR);
+define("SRC_PATH", ROOT . 'src' . DIRECTORY_SEPARATOR);
+define("APP_PATH", ROOT . 'app' . DIRECTORY_SEPARATOR);
+define("LIB_PATH", SRC_PATH . 'lib' . DIRECTORY_SEPARATOR);
+define("ROUTING_PATH", APP_PATH . 'routing' . DIRECTORY_SEPARATOR);
 define("VIEW_PATH", ROOT . 'view' . DIRECTORY_SEPARATOR);
 define("TEMPLATE_PATH", VIEW_PATH . 'template' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_PATH", VIEW_PATH . 'markdown' . DIRECTORY_SEPARATOR);
