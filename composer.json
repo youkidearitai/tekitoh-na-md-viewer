@@ -1,6 +1,6 @@
 {
-    "name": "youkidearitai/study_extension_text",
-    "description": "Markdown Viewer",
+    "name": "youkidearitai/tekitoh-na-md-viewer",
+    "description": "Tekitoh na Markdown Viewer",
     "license": "MIT",
     "require": {
         "php": "7.4",
