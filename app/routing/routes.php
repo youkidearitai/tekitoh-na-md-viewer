@@ -1,29 +1,15 @@
 <?php
 
 $routes = [
-	"/" => [
-		"title" => "TOP PAGE",
-		"view" => function (string $contents) : string {
-			return "TOP PAGE";
-		},
-	],
-	"/text/%d" => [
-		"title" => "pages",
-		"view" => function(string $contents) : string {
-			return $contents;
-		},
-	],
-	"/dump" => [
-		"title" => "DUMP method",
-		"view" => function (string $contents) : string {
-			\ob_start();
-			\study_extension_dump("Original method study_extension_dump");
-			\study_extension_dump($_SERVER);
-			$contents = \ob_get_contents();
-			\ob_end_clean();
-			return "<pre>" . h($contents) . "</pre>";
-		},
-	],
+	"/" => function (array $parameters) {
+		return new \Shakyou\TopPageController($parameters);
+	},
+	"/text/%d" => function (array $parameters) {
+		return new \Shakyou\TextController($parameters);
+	},
+	"/dump" => function(array $parameters) {
+		return new \Shakyou\DumpController($parameters);
+	},
 ];
 
 return $routes;

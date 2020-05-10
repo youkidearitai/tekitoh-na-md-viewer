@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><?php echo h($val["title"]); ?></title>
+<title><?php echo h($controller->title()); ?></title>
 </head>
 <body>
-<?php echo $contents; ?>
+    <?php echo $controller->view(); ?>
 <footer>
     <?php require_once 'footer.html'; ?>
 </footer>

@@ -17,24 +17,28 @@ define("DEBUG", true);
 
 require_once ROUTING_PATH . 'routes.php';
 
-$contents = null;
+$controller = null;
 
 foreach ($routes as $key => $val) {
 	if ($key === $_SERVER["REQUEST_URI"]) {
-		$contents = $val["view"]("");
+		$controller = $val([]);
+		$contents = "";
 		break;
 	}
 
 	$number = parseRouteNumber($_SERVER["REQUEST_URI"], $key);
 
 	if ($number !== false) {
-		$contents = $val["view"](readMarkdown($number));
+		$controller = $val(["number" => $number]);
+		$contents = readMarkdown($number);
 		break;
 	}
 }
 
-if (!isset($contents)) {
+if (!isset($controller)) {
 	throw new NotFoundException("404 Not Found");
 }
+
+$controller->execute($contents);
 
 require TEMPLATE_PATH . 'default.html';

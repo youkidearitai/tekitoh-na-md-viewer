@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Shakyou\\": "shakyou"
+            "Shakyou\\": "src"
         },
         "files": [
             "src/lib/functions.php",
