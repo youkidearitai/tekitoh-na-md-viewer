@@ -22,7 +22,6 @@ $controller = null;
 foreach ($routes as $key => $val) {
 	if ($key === $_SERVER["REQUEST_URI"]) {
 		$controller = $val([]);
-		$contents = "";
 		break;
 	}
 
@@ -30,7 +29,6 @@ foreach ($routes as $key => $val) {
 
 	if ($number !== false) {
 		$controller = $val(["number" => $number]);
-		$contents = readMarkdown($number);
 		break;
 	}
 }
@@ -39,6 +37,6 @@ if (!isset($controller)) {
 	throw new NotFoundException("404 Not Found");
 }
 
-$controller->execute($contents);
+$controller->execute();
 
 require TEMPLATE_PATH . 'default.html';

@@ -7,8 +7,8 @@ class TextController extends \Shakyou\Controller {
 		return sprintf("Text %d", $this->parameters["number"]);
 	}
 
-	public function action(string $contents) : string {
-		return $contents;
+	public function action() : string {
+		return readMarkdown($this->parameters["number"]);
 	}
 }
 

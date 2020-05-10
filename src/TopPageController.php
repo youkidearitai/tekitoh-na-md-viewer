@@ -7,7 +7,7 @@ class TopPageController extends \Shakyou\Controller {
 		return "TOP PAGE";
 	}
 
-	public function action(string $contents) : string {
-		return $contents;
+	public function action() : string {
+		return "写経トップページ";
 	}
 }

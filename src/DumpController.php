@@ -7,7 +7,7 @@ class DumpController extends \Shakyou\Controller {
 		return "DUMP function";
 	}
 
-	public function action(string $contents) : string {
+	public function action() : string {
 		\ob_start();
 		\study_extension_dump("Original method study_extension_dump");
 		\study_extension_dump($_SERVER);

@@ -16,9 +16,9 @@ abstract class Controller {
 		return $this->template;
 	}
 
-	abstract public function action(string $contents) : string;
+	abstract public function action() : string;
 
-	public function execute(string $contents) {
-		$this->template = $this->action($contents);
+	public function execute() {
+		$this->template = $this->action();
 	}
 }
