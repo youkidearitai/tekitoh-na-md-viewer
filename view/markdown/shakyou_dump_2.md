@@ -251,3 +251,9 @@ streams.cはmain.cで使われるようだ。デバッガでsapi/cli/phpを走�
 ## これで今回おわり
 
 次はarrayを追加し、ついでに参照を追加できれば。
+
+### そういえば
+
+Markdownで記述してるのですが、それのビューワーをわざわざ作りました: <https://github.com/youkidearitai/tekitoh-na-md-viewer>
+
+view部分にこのサイトの下書きを入れとくので良かったらウォッチしてね
