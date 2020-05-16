@@ -4,16 +4,14 @@ Markdown Viewerがほしかったので簡単に作る。動かすには[自作e
 
 ## INSTALL
 
-ローカルで動かすことしか想定してない
-
-+ PHP 7.4にstudy\_extensionを加えてコンパイル
-
     $ composer install
     $ composer dump-autoload
 
+ローカルで動かすことしか想定してない。PHP 7.4にstudy\_extensionを加えてコンパイル
+
 ## うごかす
 
-ローカルで動かすことしか想定してない
-
     $ php -S localhost:8080 -t public/ public/index.php
+
+ローカルで動かすことしか想定してない
 
