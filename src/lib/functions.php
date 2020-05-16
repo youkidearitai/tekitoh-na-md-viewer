@@ -1,6 +1,6 @@
 <?php
 
-use Michelf\MarkdownExtra;
+use League\CommonMark\CommonMarkConverter;
 
 function h($str) {
 	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");
@@ -28,6 +28,11 @@ function readMarkdown(int $num) {
 		throw new NotFoundException("404 Not Found");
 	}
 
-	return MarkdownExtra::defaultTransform($contents);
+	$converter = new CommonMarkConverter([
+		'html_input' => 'strip',
+		'allow_unsafe_links' => false,
+	]);
+
+	return $converter->convertToHtml($contents);
 }
 

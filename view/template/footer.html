@@ -1,16 +1,12 @@
+<ul>
+    <li><a href="/">TOP PAGE</a></li>
+    <li><a href="/dump">study_extension_dump testing</a></li>
 <?php
-
-use Michelf\MarkdownExtra;
-
-$markdown = <<<MD
-+ [TOP PAGE](/)
-+ [study_extension_dump testing](/dump)
-MD;
 
 foreach (\glob(MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . '*.md') as $file) {
     $path = \basename($file);
     $match = \sscanf($path, "shakyou_dump_%d.md");
-    $markdown .= \sprintf("\n+ [%s](/text/%s)", $path, $match[0]);
-}
-
-echo MarkdownExtra::defaultTransform($markdown);
+?>
+    <li><a href="/text/<?php echo h($match[0]); ?>"><?php echo h($path); ?></a></li>
+<?php } ?>
+</ul>

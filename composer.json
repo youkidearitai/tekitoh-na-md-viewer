@@ -5,7 +5,8 @@
     "require": {
         "php": ">=7.4",
         "ext-study_extension": "^0.1",
-        "michelf/php-markdown": "^1.9"
+        "league/commonmark": "^1.4",
+        "league/html-to-markdown": "^4.9"
     },
     "autoload": {
         "psr-4": {
