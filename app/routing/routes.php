@@ -10,7 +10,7 @@ $routes = [
 	"/dump" => function(array $parameters) {
 		return new \Shakyou\DumpController($parameters);
 	},
-	"/convert/md-to-html" => function(array $parameters) {
+	"/convert/html-to-md" => function(array $parameters) {
 		return new\Shakyou\ConvertMarkdownController($parameters);
 	},
 ];
