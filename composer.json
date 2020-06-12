@@ -7,7 +7,8 @@
         "ext-study_extension": "^0.1",
         "league/commonmark": "^1.4",
         "league/html-to-markdown": "^4.9",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "php-di/php-di": "^6.2"
     },
     "autoload": {
         "psr-4": {

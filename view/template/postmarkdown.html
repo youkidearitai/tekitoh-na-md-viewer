@@ -1,18 +1,15 @@
-<?php
-
-$html = <<<HTML
 <table>
     <form method="post">
     <tr>
         <th>html</th>
         <td>
-            <textarea style="width: 100em; height: 100em;" name="html">%s</textarea>
+            <textarea style="width: 100em; height: 100em;" name="html">{{ input|escape }}</textarea>
         </td>
     </tr>
     <tr>
         <th>send</th>
         <td style="text-align: center; width: 100%%;">
-            <input style="text-align:center; margin:auto; width: 100%%; height: 3em;" type="submit" name="submit" value="送信">
+            <input style="text-align:center; margin:auto; width: 100%; height: 3em;" type="submit" name="submit" value="送信">
         </td>
     </tr>
     </form>
@@ -22,10 +19,7 @@ $html = <<<HTML
     <tr>
         <th>output</th>
         <td>
-            <pre>%s</pre>
+            <pre>{{ output|escape }}</pre>
         </td>
     </tr>
 </table>
-HTML;
-
-return sprintf($html, h($input), h($output));

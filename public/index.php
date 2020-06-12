@@ -18,12 +18,13 @@ define("DEBUG", true);
 require_once ROUTING_PATH . 'routes.php';
 
 $controller = null;
+$container = include LIB_PATH . 'container.php';
 
 foreach ($routes as $key => $val) {
 	$param = parseRouteParam($_SERVER["REQUEST_URI"], $key);
 
 	if ($param !== false) {
-		$controller = $val($param);
+		$controller = $val($param, $container);
 		break;
 	}
 }

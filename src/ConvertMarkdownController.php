@@ -2,8 +2,6 @@
 
 namespace Shakyou;
 
-use League\HTMLToMarkdown\HtmlConverter;
-
 class ConvertMarkdownController extends \Shakyou\Controller {
 	public function title() : string {
 		return "Convert Markdown";
@@ -14,16 +12,13 @@ class ConvertMarkdownController extends \Shakyou\Controller {
 		$output = "";
 
 		if (isset($_POST["html"])) {
-			$converter = new HtmlConverter(
-				array(
-					'header_style' => 'atx',
-					'list_item_style' => '+',
-				)
-			);
+			$converter = $this->container->get("html_converter");
 			$input = $_POST["html"];
 			$output = $converter->convert($_POST["html"]);
 		}
 
-		return include_once TEMPLATE_PATH . "postmarkdown.html";
+		$twig = $this->container->get("view");
+
+		return $twig->render("postmarkdown.html", ['input' => $input, 'output' => $output]);
 	}
 }
