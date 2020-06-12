@@ -9,7 +9,7 @@ $container = new Container();
 
 $container->set("view", function() {
 	$loader = new FilesystemLoader(TEMPLATE_PATH);
-	$twig = new Environment($loader);
+	$twig = new Environment($loader, ['debug' => true]);
 	return $twig;
 });
 

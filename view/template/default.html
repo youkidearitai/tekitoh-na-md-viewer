@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title><?php echo h($controller->title()); ?></title>
-<?php echo $controller->head(); ?>
-</head>
-<body>
-    <?php echo $controller->view(); ?>
-<footer>
-    <?php require_once 'footer.html'; ?>
-</footer>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ controller.title()|escape }}</title>
+        {{ controller.head()|raw }}
+    </head>
+    <body>
+        {{ controller.view()|raw }}
+        <footer>
+            {{ include('footer.html') }}
+        </footer>
+    </body>
 </html>

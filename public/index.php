@@ -35,4 +35,5 @@ if (!isset($controller)) {
 
 $controller->execute();
 
-require TEMPLATE_PATH . 'default.html';
+$twig = $container->get("view");
+echo $twig->render('default.html', ['controller' => $controller]);

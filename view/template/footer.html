@@ -2,13 +2,8 @@
     <li><a href="/">TOP PAGE</a></li>
     <li><a href="/dump">study_extension_dump testing</a></li>
     <li><a href="/convert/html-to-md">HTML to Markdown</a></li>
-<?php
-
-foreach (\glob(MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . '*.md') as $file) {
-    $path = \basename($file);
-    $match = \sscanf($path, "shakyou_dump_%d.md");
-?>
-    <li><a href="/text/<?php echo h($match[0]); ?>"><?php echo h($path); ?></a></li>
-<?php } ?>
+    {% for md in controller.mdLists() %}
+    <li><a href="/text/{{ md.number|escape('html_attr') }}">{{ md.path|escape }}</a></li>
+    {% endfor %}
 </ul>
 
