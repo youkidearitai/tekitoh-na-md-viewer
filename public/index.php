@@ -20,15 +20,10 @@ require_once ROUTING_PATH . 'routes.php';
 $controller = null;
 
 foreach ($routes as $key => $val) {
-	if ($key === $_SERVER["REQUEST_URI"]) {
-		$controller = $val([]);
-		break;
-	}
+	$param = parseRouteParam($_SERVER["REQUEST_URI"], $key);
 
-	$number = parseRouteNumber($_SERVER["REQUEST_URI"], $key);
-
-	if ($number !== false) {
-		$controller = $val(["number" => $number]);
+	if ($param !== false) {
+		$controller = $val($param);
 		break;
 	}
 }

@@ -6,13 +6,17 @@ function h($str) {
 	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
 
-function parseRouteNumber(string $request, string $router) {
+function parseRouteParam(string $request, string $router) {
+	if ($request === $router) {
+		return [];
+	}
+
 	$numbers = \sscanf($request, $router);
 	if (\count($numbers) != 1) {
 		return false;
 	}
 
-	return $numbers[0] ?? false;
+	return isset($numbers[0]) ? ["number" => $numbers[0]] : false;
 }
 
 function readMarkdown(int $num) {
