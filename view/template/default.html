@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title><?php echo h($controller->title()); ?></title>
+<?php echo $controller->head(); ?>
 </head>
 <body>
     <?php echo $controller->view(); ?>

@@ -10,6 +10,10 @@ abstract class Controller {
 		$this->parameters = $parameters;
 	}
 
+	public function head() : string {
+		return "";
+	}
+
 	abstract public function title() : string;
 
 	public function view() : string {
