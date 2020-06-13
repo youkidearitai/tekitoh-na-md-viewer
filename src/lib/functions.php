@@ -1,6 +1,7 @@
 <?php
 
 use League\CommonMark\CommonMarkConverter;
+use Error\NotFoundException;
 
 function h($str) {
 	return \htmlspecialchars($str, ENT_QUOTES, "UTF-8");

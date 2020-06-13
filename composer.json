@@ -12,7 +12,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Shakyou\\": "src"
+            "Shakyou\\": "src",
+            "Handler\\": "app/handler",
+            "Middle\\": "app/middle",
+            "Error\\": "app/error"
         },
         "files": [
             "src/lib/functions.php",

@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>404 Not Found</title>
+<title>エラーが発生しました</title>
 </head>
 <body>
-    <h1>ページが見つかりません！</h1>
-    <p>ここにはページがありません。リンクからたどり直してください。</p>
+    <h1>エラーが発生しました</h1>
+    <p>申し訳ありません。何かエラーが発生しました。</p>
 <footer>
 </footer>
 <section>
@@ -19,11 +19,8 @@
     <li>{{ exceptionThrowableBacktrace.file }} in {{ exceptionThrowableBacktrace.line }}</li>
     {% endfor %}
     </ul>
-    <h3>study_extension_dump method output</h3>
-    <pre>{{ exceptionDump }}</pre>
-    <h3>study_extension_print_backtrace method output</h3>
-    <pre>{{ exceptionBacktrace }}</pre>
 {% endif %}
 </section>
 </body>
 </html>
+

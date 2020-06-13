@@ -15,25 +15,14 @@ define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 
 define("DEBUG", true);
 
-require_once ROUTING_PATH . 'routes.php';
-
-$controller = null;
+$routes = include ROUTING_PATH . 'routes.php';
 $container = include LIB_PATH . 'container.php';
 
-foreach ($routes as $key => $val) {
-	$param = parseRouteParam($_SERVER["REQUEST_URI"], $key);
+use Middle\ProcessMiddleware;
+use Middle\ErrorMiddleware;
+use Handler\RequestHandler;
 
-	if ($param !== false) {
-		$controller = $val($param, $container);
-		break;
-	}
-}
-
-if (!isset($controller)) {
-	throw new NotFoundException("404 Not Found");
-}
-
-$controller->execute();
-
-$twig = $container->get("view");
-echo $twig->render('default.html', ['controller' => $controller]);
+$handler = new RequestHandler();
+$middle = new ErrorMiddleware($routes, $container);
+$middle->add(new ProcessMiddleware($routes, $container));
+$middle->process($handler);
