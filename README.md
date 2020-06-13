@@ -9,6 +9,12 @@ Markdown Viewerがほしかったので簡単に作る。動かすには[自作e
 
 ローカルで動かすことしか想定してない。PHP 7.4にstudy\_extensionを加えてコンパイル
 
+## markdownを閲覧する
+
+1. `/view/templates/` ディレクトリに `shakyou_dump_[0-9]+.md` をおく
+2. /text/[0-9]+ を閲覧する
+    + 例として `shakyou_dump_3.md` を `/view/templates/` に設置すると `/text/3` で読める
+
 ## うごかす
 
     $ php -S localhost:8080 -t public/ public/index.php
