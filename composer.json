@@ -12,14 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Shakyou\\": "src",
+            "Shakyou\\": "app/controller",
             "Handler\\": "app/handler",
             "Middle\\": "app/middle",
             "Error\\": "app/error"
         },
         "files": [
-            "src/lib/functions.php",
-            "app/routing/error.php"
+            "src/lib/functions.php"
         ]
     }
 }
