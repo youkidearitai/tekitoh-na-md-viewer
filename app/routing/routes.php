@@ -6,7 +6,7 @@ $routes = [
 	"/" => function (array $parameters, ContainerInterface $container) {
 		return new \Shakyou\TopPageController($parameters, $container);
 	},
-	"/text/%d" => function (array $parameters, ContainerInterface $container) {
+	"/text/%s" => function (array $parameters, ContainerInterface $container) {
 		return new \Shakyou\TextController($parameters, $container);
 	},
 	"/dump" => function(array $parameters, ContainerInterface $container) {

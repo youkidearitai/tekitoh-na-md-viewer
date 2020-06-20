@@ -20,8 +20,8 @@ function parseRouteParam(string $request, string $router) {
 	return isset($numbers[0]) ? ["number" => $numbers[0]] : false;
 }
 
-function readMarkdown(int $num) {
-	$path = MARKDOWN_PATH . MARKDOWN_SHAKYOU_PREFIX . strval($num) . '.md';
+function readMarkdown(string $file) {
+	$path = MARKDOWN_PATH . basename($file);
 
 	if (!\file_exists($path)) {
 		throw new NotFoundException("404 Not Found");

@@ -11,7 +11,6 @@ define("ROUTING_PATH", APP_PATH . 'routing' . DIRECTORY_SEPARATOR);
 define("VIEW_PATH", ROOT . 'view' . DIRECTORY_SEPARATOR);
 define("TEMPLATE_PATH", VIEW_PATH . 'template' . DIRECTORY_SEPARATOR);
 define("MARKDOWN_PATH", VIEW_PATH . 'markdown' . DIRECTORY_SEPARATOR);
-define("MARKDOWN_SHAKYOU_PREFIX", 'shakyou_dump_');
 
 define("DEBUG", true);
 
