@@ -4,11 +4,11 @@ namespace Shakyou;
 
 class TextController extends \Shakyou\Controller {
 	public function title() : string {
-		return sprintf("Text %d", $this->parameters["number"]);
+		return sprintf("Text %s", $this->parameters["basename"]);
 	}
 
 	public function action() : string {
-		return readMarkdown($this->parameters["number"]);
+		return readMarkdown($this->parameters["basename"]);
 	}
 }
 

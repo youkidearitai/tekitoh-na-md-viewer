@@ -36,7 +36,7 @@ abstract class Controller {
 			function ($file) {
 				$path = \basename($file);
 				$match = \sscanf($path, "%s.md");
-				return ['path' => $path, 'match' => $match, 'number' => $match[0]];
+				return ['path' => $path, 'match' => $match, 'basename' => $match[0]];
 			},
 			\glob(MARKDOWN_PATH . '*.md')
 		);

@@ -3,7 +3,7 @@
     <li><a href="/dump">study_extension_dump testing</a></li>
     <li><a href="/convert/html-to-md">HTML to Markdown</a></li>
     {% for md in controller.mdLists() %}
-    <li><a href="/text/{{ md.number|escape('html_attr') }}">{{ md.path|escape }}</a></li>
+    <li><a href="/text/{{ md.basename|escape('html_attr') }}">{{ md.path|escape }}</a></li>
     {% endfor %}
 </ul>
 

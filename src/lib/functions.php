@@ -17,7 +17,7 @@ function parseRouteParam(string $request, string $router) {
 		return false;
 	}
 
-	return isset($numbers[0]) ? ["number" => $numbers[0]] : false;
+	return isset($numbers[0]) ? ["basename" => $numbers[0]] : false;
 }
 
 function readMarkdown(string $file) {
