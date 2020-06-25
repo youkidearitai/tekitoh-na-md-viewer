@@ -11,9 +11,9 @@ Markdown Viewerがほしかったので簡単に作る。動かすには[自作e
 
 ## markdownを閲覧する
 
-1. `/view/templates/` ディレクトリに `shakyou_dump_[0-9]+.md` をおく
-2. /text/[0-9]+ を閲覧する
-    + 例として `shakyou_dump_3.md` を `/view/templates/` に設置すると `/text/3` で読める
+1. `/view/templates/` ディレクトリに Markdownファイル をおく
+2. /text/(1のファイル名)を閲覧する
+    + 例として `shakyou_dump_3.md` を `/view/templates/` に設置すると `/text/shakyou_dump_3.md` で読める
 
 ## うごかす
 
