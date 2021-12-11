@@ -15,6 +15,9 @@ $routes = [
 	"/convert/html-to-md" => function(array $parameters, ContainerInterface $container) {
 		return new \Shakyou\ConvertMarkdownController($parameters, $container);
 	},
+	"/info.php" => function(array $parameters, ContainerInterface $container) {
+		phpinfo();
+	}
 ];
 
 return $routes;
